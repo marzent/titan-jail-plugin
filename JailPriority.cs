@@ -8,13 +8,22 @@ using System.Reflection;
 using System.Xml;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Threading;
+using WindowsInput;
+using WindowsInput.Native;
+
 [assembly: AssemblyTitle("JailPriority Plugin")]
-[assembly: AssemblyVersion("1.0.0.3")]
+[assembly: AssemblyVersion("1.1.0.1")]
 
 namespace ACT_Plugin
 {
     public class JailPriority : UserControl, IActPluginV1
     {
+
+        InputSimulator sim = new InputSimulator();
+        private Label Label1;
+        private PictureBox pictureBox1;
+
         #region Designer Created Code (Avoid editing)
         /// <summary> 
         /// Required designer variable.
@@ -42,15 +51,9 @@ namespace ACT_Plugin
         /// </summary>
         private void InitializeComponent()
         {
-            this.player1RadioButton = new System.Windows.Forms.RadioButton();
-            this.player2RadioButton = new System.Windows.Forms.RadioButton();
-            this.player3RadioButton = new System.Windows.Forms.RadioButton();
-            this.player4RadioButton = new System.Windows.Forms.RadioButton();
-            this.player5RadioButton = new System.Windows.Forms.RadioButton();
-            this.player6RadioButton = new System.Windows.Forms.RadioButton();
-            this.player7RadioButton = new System.Windows.Forms.RadioButton();
-            this.player8RadioButton = new System.Windows.Forms.RadioButton();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JailPriority));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Label1 = new System.Windows.Forms.Label();
             this.player1TextBox = new System.Windows.Forms.TextBox();
             this.player2TextBox = new System.Windows.Forms.TextBox();
             this.player3TextBox = new System.Windows.Forms.TextBox();
@@ -64,110 +67,28 @@ namespace ACT_Plugin
             this.instructionLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tts1TextBox = new System.Windows.Forms.TextBox();
-            this.tts2TextBox = new System.Windows.Forms.TextBox();
-            this.tts3TextBox = new System.Windows.Forms.TextBox();
+            this.party8 = new System.Windows.Forms.TextBox();
+            this.party7 = new System.Windows.Forms.TextBox();
+            this.party6 = new System.Windows.Forms.TextBox();
+            this.party5 = new System.Windows.Forms.TextBox();
+            this.party4 = new System.Windows.Forms.TextBox();
+            this.party1 = new System.Windows.Forms.TextBox();
+            this.party2 = new System.Windows.Forms.TextBox();
+            this.party3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.logsTextBox = new System.Windows.Forms.TextBox();
             this.infoLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // player1RadioButton
-            // 
-            this.player1RadioButton.AutoSize = true;
-            this.player1RadioButton.Checked = true;
-            this.player1RadioButton.Location = new System.Drawing.Point(3, 14);
-            this.player1RadioButton.Name = "player1RadioButton";
-            this.player1RadioButton.Size = new System.Drawing.Size(14, 13);
-            this.player1RadioButton.TabIndex = 0;
-            this.player1RadioButton.TabStop = true;
-            this.player1RadioButton.UseVisualStyleBackColor = true;
-            this.player1RadioButton.CheckedChanged += new System.EventHandler(this.updatePlayerIndex);
-            // 
-            // player2RadioButton
-            // 
-            this.player2RadioButton.AutoSize = true;
-            this.player2RadioButton.Location = new System.Drawing.Point(3, 37);
-            this.player2RadioButton.Name = "player2RadioButton";
-            this.player2RadioButton.Size = new System.Drawing.Size(14, 13);
-            this.player2RadioButton.TabIndex = 1;
-            this.player2RadioButton.TabStop = true;
-            this.player2RadioButton.UseVisualStyleBackColor = true;
-            this.player2RadioButton.CheckedChanged += new System.EventHandler(this.updatePlayerIndex);
-            // 
-            // player3RadioButton
-            // 
-            this.player3RadioButton.AutoSize = true;
-            this.player3RadioButton.Location = new System.Drawing.Point(3, 60);
-            this.player3RadioButton.Name = "player3RadioButton";
-            this.player3RadioButton.Size = new System.Drawing.Size(14, 13);
-            this.player3RadioButton.TabIndex = 2;
-            this.player3RadioButton.TabStop = true;
-            this.player3RadioButton.UseVisualStyleBackColor = true;
-            this.player3RadioButton.CheckedChanged += new System.EventHandler(this.updatePlayerIndex);
-            // 
-            // player4RadioButton
-            // 
-            this.player4RadioButton.AutoSize = true;
-            this.player4RadioButton.Location = new System.Drawing.Point(3, 83);
-            this.player4RadioButton.Name = "player4RadioButton";
-            this.player4RadioButton.Size = new System.Drawing.Size(14, 13);
-            this.player4RadioButton.TabIndex = 3;
-            this.player4RadioButton.TabStop = true;
-            this.player4RadioButton.UseVisualStyleBackColor = true;
-            this.player4RadioButton.CheckedChanged += new System.EventHandler(this.updatePlayerIndex);
-            // 
-            // player5RadioButton
-            // 
-            this.player5RadioButton.AutoSize = true;
-            this.player5RadioButton.Location = new System.Drawing.Point(3, 106);
-            this.player5RadioButton.Name = "player5RadioButton";
-            this.player5RadioButton.Size = new System.Drawing.Size(14, 13);
-            this.player5RadioButton.TabIndex = 4;
-            this.player5RadioButton.TabStop = true;
-            this.player5RadioButton.UseVisualStyleBackColor = true;
-            this.player5RadioButton.CheckedChanged += new System.EventHandler(this.updatePlayerIndex);
-            // 
-            // player6RadioButton
-            // 
-            this.player6RadioButton.AutoSize = true;
-            this.player6RadioButton.Location = new System.Drawing.Point(3, 129);
-            this.player6RadioButton.Name = "player6RadioButton";
-            this.player6RadioButton.Size = new System.Drawing.Size(14, 13);
-            this.player6RadioButton.TabIndex = 5;
-            this.player6RadioButton.TabStop = true;
-            this.player6RadioButton.UseVisualStyleBackColor = true;
-            this.player6RadioButton.CheckedChanged += new System.EventHandler(this.updatePlayerIndex);
-            // 
-            // player7RadioButton
-            // 
-            this.player7RadioButton.AutoSize = true;
-            this.player7RadioButton.Location = new System.Drawing.Point(3, 152);
-            this.player7RadioButton.Name = "player7RadioButton";
-            this.player7RadioButton.Size = new System.Drawing.Size(14, 13);
-            this.player7RadioButton.TabIndex = 6;
-            this.player7RadioButton.TabStop = true;
-            this.player7RadioButton.UseVisualStyleBackColor = true;
-            this.player7RadioButton.CheckedChanged += new System.EventHandler(this.updatePlayerIndex);
-            // 
-            // player8RadioButton
-            // 
-            this.player8RadioButton.AutoSize = true;
-            this.player8RadioButton.Location = new System.Drawing.Point(3, 175);
-            this.player8RadioButton.Name = "player8RadioButton";
-            this.player8RadioButton.Size = new System.Drawing.Size(14, 13);
-            this.player8RadioButton.TabIndex = 7;
-            this.player8RadioButton.TabStop = true;
-            this.player8RadioButton.UseVisualStyleBackColor = true;
-            this.player8RadioButton.CheckedChanged += new System.EventHandler(this.updatePlayerIndex);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.Label1);
             this.panel1.Controls.Add(this.player1TextBox);
             this.panel1.Controls.Add(this.player2TextBox);
             this.panel1.Controls.Add(this.player3TextBox);
@@ -176,22 +97,23 @@ namespace ACT_Plugin
             this.panel1.Controls.Add(this.player6TextBox);
             this.panel1.Controls.Add(this.player7TextBox);
             this.panel1.Controls.Add(this.player8TextBox);
-            this.panel1.Controls.Add(this.player1RadioButton);
-            this.panel1.Controls.Add(this.player2RadioButton);
-            this.panel1.Controls.Add(this.player3RadioButton);
-            this.panel1.Controls.Add(this.player4RadioButton);
-            this.panel1.Controls.Add(this.player5RadioButton);
-            this.panel1.Controls.Add(this.player6RadioButton);
-            this.panel1.Controls.Add(this.player7RadioButton);
-            this.panel1.Controls.Add(this.player8RadioButton);
-            this.panel1.Location = new System.Drawing.Point(3, 27);
+            this.panel1.Location = new System.Drawing.Point(3, 16);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(202, 211);
+            this.panel1.Size = new System.Drawing.Size(228, 211);
             this.panel1.TabIndex = 8;
+            // 
+            // Label1
+            // 
+            this.Label1.AutoSize = true;
+            this.Label1.Location = new System.Drawing.Point(5, 11);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(38, 13);
+            this.Label1.TabIndex = 16;
+            this.Label1.Text = "Priority";
             // 
             // player1TextBox
             // 
-            this.player1TextBox.Location = new System.Drawing.Point(23, 11);
+            this.player1TextBox.Location = new System.Drawing.Point(49, 8);
             this.player1TextBox.Name = "player1TextBox";
             this.player1TextBox.Size = new System.Drawing.Size(164, 20);
             this.player1TextBox.TabIndex = 8;
@@ -199,7 +121,7 @@ namespace ACT_Plugin
             // 
             // player2TextBox
             // 
-            this.player2TextBox.Location = new System.Drawing.Point(23, 34);
+            this.player2TextBox.Location = new System.Drawing.Point(49, 34);
             this.player2TextBox.Name = "player2TextBox";
             this.player2TextBox.Size = new System.Drawing.Size(164, 20);
             this.player2TextBox.TabIndex = 9;
@@ -207,7 +129,7 @@ namespace ACT_Plugin
             // 
             // player3TextBox
             // 
-            this.player3TextBox.Location = new System.Drawing.Point(23, 57);
+            this.player3TextBox.Location = new System.Drawing.Point(49, 60);
             this.player3TextBox.Name = "player3TextBox";
             this.player3TextBox.Size = new System.Drawing.Size(164, 20);
             this.player3TextBox.TabIndex = 10;
@@ -215,7 +137,7 @@ namespace ACT_Plugin
             // 
             // player4TextBox
             // 
-            this.player4TextBox.Location = new System.Drawing.Point(23, 80);
+            this.player4TextBox.Location = new System.Drawing.Point(49, 86);
             this.player4TextBox.Name = "player4TextBox";
             this.player4TextBox.Size = new System.Drawing.Size(164, 20);
             this.player4TextBox.TabIndex = 11;
@@ -223,7 +145,7 @@ namespace ACT_Plugin
             // 
             // player5TextBox
             // 
-            this.player5TextBox.Location = new System.Drawing.Point(23, 103);
+            this.player5TextBox.Location = new System.Drawing.Point(49, 112);
             this.player5TextBox.Name = "player5TextBox";
             this.player5TextBox.Size = new System.Drawing.Size(164, 20);
             this.player5TextBox.TabIndex = 12;
@@ -231,7 +153,7 @@ namespace ACT_Plugin
             // 
             // player6TextBox
             // 
-            this.player6TextBox.Location = new System.Drawing.Point(23, 126);
+            this.player6TextBox.Location = new System.Drawing.Point(49, 138);
             this.player6TextBox.Name = "player6TextBox";
             this.player6TextBox.Size = new System.Drawing.Size(164, 20);
             this.player6TextBox.TabIndex = 13;
@@ -239,7 +161,7 @@ namespace ACT_Plugin
             // 
             // player7TextBox
             // 
-            this.player7TextBox.Location = new System.Drawing.Point(23, 148);
+            this.player7TextBox.Location = new System.Drawing.Point(49, 164);
             this.player7TextBox.Name = "player7TextBox";
             this.player7TextBox.Size = new System.Drawing.Size(164, 20);
             this.player7TextBox.TabIndex = 14;
@@ -247,7 +169,7 @@ namespace ACT_Plugin
             // 
             // player8TextBox
             // 
-            this.player8TextBox.Location = new System.Drawing.Point(23, 171);
+            this.player8TextBox.Location = new System.Drawing.Point(49, 188);
             this.player8TextBox.Name = "player8TextBox";
             this.player8TextBox.Size = new System.Drawing.Size(164, 20);
             this.player8TextBox.TabIndex = 15;
@@ -255,6 +177,7 @@ namespace ACT_Plugin
             // 
             // exportButton
             // 
+            this.exportButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.exportButton.Location = new System.Drawing.Point(130, 244);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(75, 23);
@@ -265,6 +188,7 @@ namespace ACT_Plugin
             // 
             // importButton
             // 
+            this.importButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.importButton.Location = new System.Drawing.Point(3, 244);
             this.importButton.Name = "importButton";
             this.importButton.Size = new System.Drawing.Size(75, 23);
@@ -276,13 +200,14 @@ namespace ACT_Plugin
             // instructionLabel
             // 
             this.instructionLabel.AutoSize = true;
+            this.instructionLabel.BackColor = System.Drawing.Color.Transparent;
             this.instructionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.instructionLabel.Location = new System.Drawing.Point(437, 33);
+            this.instructionLabel.Location = new System.Drawing.Point(460, 16);
             this.instructionLabel.Name = "instructionLabel";
-            this.instructionLabel.Size = new System.Drawing.Size(201, 80);
+            this.instructionLabel.Size = new System.Drawing.Size(201, 96);
             this.instructionLabel.TabIndex = 11;
-            this.instructionLabel.Text = "1. Write priority list.\r\n2. Select your name.\r\n3. Set up your TSS triggers.\r\n\r\nyo" +
-    "u can export/import priority list.";
+            this.instructionLabel.Text = "1. Write priority list.\r\n2. Write your Party List in order.\r\n3. Set up CTRL+ SHIF" +
+    "T + F{1-8}\r\n    macros in order.\r\n\r\nyou can export/import priority list.";
             // 
             // label2
             // 
@@ -294,80 +219,110 @@ namespace ACT_Plugin
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.tts1TextBox);
-            this.panel2.Controls.Add(this.tts2TextBox);
-            this.panel2.Controls.Add(this.tts3TextBox);
+            this.panel2.Controls.Add(this.party8);
+            this.panel2.Controls.Add(this.party7);
+            this.panel2.Controls.Add(this.party6);
+            this.panel2.Controls.Add(this.party5);
+            this.panel2.Controls.Add(this.party4);
+            this.panel2.Controls.Add(this.party1);
+            this.panel2.Controls.Add(this.party2);
+            this.panel2.Controls.Add(this.party3);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(211, 27);
+            this.panel2.Location = new System.Drawing.Point(237, 16);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(220, 86);
+            this.panel2.Size = new System.Drawing.Size(220, 211);
             this.panel2.TabIndex = 13;
             // 
-            // tts1TextBox
+            // party8
             // 
-            this.tts1TextBox.Location = new System.Drawing.Point(54, 8);
-            this.tts1TextBox.Name = "tts1TextBox";
-            this.tts1TextBox.Size = new System.Drawing.Size(163, 20);
-            this.tts1TextBox.TabIndex = 3;
-            this.tts1TextBox.Text = "First";
-            this.tts1TextBox.TextChanged += new System.EventHandler(this.updateTSS);
+            this.party8.Location = new System.Drawing.Point(54, 188);
+            this.party8.Name = "party8";
+            this.party8.Size = new System.Drawing.Size(163, 20);
+            this.party8.TabIndex = 10;
+            this.party8.Text = "Third";
+            this.party8.TextChanged += new System.EventHandler(this.updateTSS);
             // 
-            // tts2TextBox
+            // party7
             // 
-            this.tts2TextBox.Location = new System.Drawing.Point(54, 34);
-            this.tts2TextBox.Name = "tts2TextBox";
-            this.tts2TextBox.Size = new System.Drawing.Size(163, 20);
-            this.tts2TextBox.TabIndex = 4;
-            this.tts2TextBox.Text = "Second";
-            this.tts2TextBox.TextChanged += new System.EventHandler(this.updateTSS);
+            this.party7.Location = new System.Drawing.Point(54, 164);
+            this.party7.Name = "party7";
+            this.party7.Size = new System.Drawing.Size(163, 20);
+            this.party7.TabIndex = 9;
+            this.party7.Text = "Third";
+            this.party7.TextChanged += new System.EventHandler(this.updateTSS);
             // 
-            // tts3TextBox
+            // party6
             // 
-            this.tts3TextBox.Location = new System.Drawing.Point(54, 60);
-            this.tts3TextBox.Name = "tts3TextBox";
-            this.tts3TextBox.Size = new System.Drawing.Size(163, 20);
-            this.tts3TextBox.TabIndex = 5;
-            this.tts3TextBox.Text = "Third";
-            this.tts3TextBox.TextChanged += new System.EventHandler(this.updateTSS);
+            this.party6.Location = new System.Drawing.Point(54, 138);
+            this.party6.Name = "party6";
+            this.party6.Size = new System.Drawing.Size(163, 20);
+            this.party6.TabIndex = 8;
+            this.party6.Text = "Third";
+            this.party6.TextChanged += new System.EventHandler(this.updateTSS);
+            // 
+            // party5
+            // 
+            this.party5.Location = new System.Drawing.Point(54, 112);
+            this.party5.Name = "party5";
+            this.party5.Size = new System.Drawing.Size(163, 20);
+            this.party5.TabIndex = 7;
+            this.party5.Text = "Third";
+            this.party5.TextChanged += new System.EventHandler(this.updateTSS);
+            // 
+            // party4
+            // 
+            this.party4.Location = new System.Drawing.Point(54, 86);
+            this.party4.Name = "party4";
+            this.party4.Size = new System.Drawing.Size(163, 20);
+            this.party4.TabIndex = 6;
+            this.party4.Text = "Third";
+            this.party4.TextChanged += new System.EventHandler(this.updateTSS);
+            // 
+            // party1
+            // 
+            this.party1.Location = new System.Drawing.Point(54, 8);
+            this.party1.Name = "party1";
+            this.party1.Size = new System.Drawing.Size(163, 20);
+            this.party1.TabIndex = 3;
+            this.party1.Text = "First";
+            this.party1.TextChanged += new System.EventHandler(this.updateTSS);
+            // 
+            // party2
+            // 
+            this.party2.Location = new System.Drawing.Point(54, 34);
+            this.party2.Name = "party2";
+            this.party2.Size = new System.Drawing.Size(163, 20);
+            this.party2.TabIndex = 4;
+            this.party2.Text = "Second";
+            this.party2.TextChanged += new System.EventHandler(this.updateTSS);
+            // 
+            // party3
+            // 
+            this.party3.Location = new System.Drawing.Point(54, 60);
+            this.party3.Name = "party3";
+            this.party3.Size = new System.Drawing.Size(163, 20);
+            this.party3.TabIndex = 5;
+            this.party3.Text = "Third";
+            this.party3.TextChanged += new System.EventHandler(this.updateTSS);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 64);
+            this.label5.Location = new System.Drawing.Point(17, 11);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 13);
+            this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 2;
-            this.label5.Text = "3rd TTS";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "2nd TTS";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "1st TTS";
+            this.label5.Text = "Party";
             // 
             // logsTextBox
             // 
-            this.logsTextBox.Location = new System.Drawing.Point(211, 119);
+            this.logsTextBox.Location = new System.Drawing.Point(6, 284);
             this.logsTextBox.MaxLength = 1000000;
             this.logsTextBox.Multiline = true;
             this.logsTextBox.Name = "logsTextBox";
             this.logsTextBox.ReadOnly = true;
             this.logsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.logsTextBox.Size = new System.Drawing.Size(427, 148);
+            this.logsTextBox.Size = new System.Drawing.Size(632, 148);
             this.logsTextBox.TabIndex = 14;
             this.logsTextBox.Text = "Started..";
             this.logsTextBox.WordWrap = false;
@@ -375,16 +330,43 @@ namespace ACT_Plugin
             // infoLabel
             // 
             this.infoLabel.AutoSize = true;
-            this.infoLabel.Location = new System.Drawing.Point(506, 270);
+            this.infoLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.infoLabel.Location = new System.Drawing.Point(0, 480);
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(132, 13);
+            this.infoLabel.Size = new System.Drawing.Size(199, 13);
             this.infoLabel.TabIndex = 15;
-            this.infoLabel.Text = "Discord: @Tarutella#3846";
+            this.infoLabel.Text = "made by Usagi Shiro / McReduce#4334";
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(501, 133);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(89, 41);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Check lists";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ImageLocation = "";
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(969, 493);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
             // 
             // JailPriority
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.logsTextBox);
             this.Controls.Add(this.panel2);
@@ -393,30 +375,20 @@ namespace ACT_Plugin
             this.Controls.Add(this.importButton);
             this.Controls.Add(this.exportButton);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pictureBox1);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.Name = "JailPriority";
             this.Size = new System.Drawing.Size(969, 493);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        private void updatePlayerIndex(object sender, EventArgs e)
-        {
-
-            RadioButton[] radios = panel1.Controls.OfType<RadioButton>().ToArray();
-            for (int i = 0; i < radios.Length; i++)
-            {
-                if (radios[i].Checked)
-                {
-                    yourIndex = i;
-                    break;
-                }
-            }
-        }
 
         #endregion
 
@@ -427,14 +399,6 @@ namespace ACT_Plugin
         }
         Label lblStatus;    // The status label that appears in ACT's Plugin tab
         string settingsFile = Path.Combine(ActGlobals.oFormActMain.AppDataFolder.FullName, "Config\\TitanJail.config.xml");
-        private RadioButton player5RadioButton;
-        private RadioButton player4RadioButton;
-        private RadioButton player6RadioButton;
-        private RadioButton player2RadioButton;
-        private RadioButton player7RadioButton;
-        private RadioButton player3RadioButton;
-        private RadioButton player8RadioButton;
-        private RadioButton player1RadioButton;
         private Panel panel1;
         private TextBox player8TextBox;
         private TextBox player7TextBox;
@@ -450,15 +414,20 @@ namespace ACT_Plugin
         private Label label2;
         private Panel panel2;
         private Label label5;
-        private Label label4;
-        private Label label3;
-        private TextBox tts3TextBox;
-        private TextBox tts2TextBox;
-        private TextBox tts1TextBox;
+        private TextBox party3;
+        private TextBox party2;
+        private TextBox party1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private TextBox logsTextBox;
         private Label infoLabel;
+        private TextBox party8;
+        private TextBox party7;
+        private TextBox party6;
+        private TextBox party5;
+        private TextBox party4;
+        private Button button1;
         SettingsSerializer xmlSettings;
+
 
         #region IActPluginV1 Members
         public void InitPlugin(TabPage pluginScreenSpace, Label pluginStatusText)
@@ -469,15 +438,18 @@ namespace ACT_Plugin
             xmlSettings = new SettingsSerializer(this); // Create a new settings serializer and pass it this instance
             LoadSettings();
             ActGlobals.oFormActMain.OnLogLineRead += OFormActMain_OnLogLineRead;
-            lblStatus.Text = "Plugin Started";
+            lblStatus.Text = "Plugin started, have fun!";
         }
+
+
         List<String> orderPlayers = new List<string>();// list of players matched in logLine
         List<String> order = new List<String>(); // List of TTS Callouts
         List<String> players = new List<String>(); // All players in priority list
         String regex = ":(.*)?:2B6(B|C):.*?:.*?:"; // regex for jails
         int countMatches = 0;// number of matchups to the regex
-        int yourIndex = 0;// player's index in the priority list
+        int[] mapping = new int[8];
         System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+
         private void OFormActMain_OnLogLineRead(bool isImport, LogLineEventArgs logInfo)
         {
             var match = Regex.Match(logInfo.logLine, regex, RegexOptions.IgnoreCase);
@@ -485,12 +457,12 @@ namespace ACT_Plugin
                 return;
             if (stopwatch.ElapsedMilliseconds > 1000)//if elapsed time since 1st matchup > 1 second. reset stopwatch
             {
-                logsTextBox.Text += "\r\n\r\n" + "=======[RESET]=======";
+                logsTextBox.AppendText("\r\n\r\n" + "=======[RESET]=======");
                 stopwatch.Reset();
                 countMatches = 0;
                 orderPlayers.Clear();
             }
-            logsTextBox.Text += "\r\n" + logInfo.logLine;
+            logsTextBox.AppendText("\r\n" + logInfo.logLine);
             stopwatch.Start();
             for (int i = 0; i < players.Count; i++)
             {
@@ -498,33 +470,32 @@ namespace ACT_Plugin
                     orderPlayers.Add(players[i]);
             }
             countMatches++;
-            int y = 0;
             if (countMatches != 3)
                 return;
             if (countMatches != orderPlayers.Count)
             {
-                logsTextBox.Text += "\r\n" + "-[Incorrect name/s in priority list!]-";
+                logsTextBox.AppendText("\r\n" + "-[Incorrect name/s in priority list!]-");
                 return;
             }
             for (int i = 0; i < players.Count; i++)
             {
                 if (orderPlayers.Contains(players[i]))
                 {
-                    if (players[i] == players[yourIndex])
-                    {
-                        ActGlobals.oFormActMain.TTS(order[y]);
-                        logsTextBox.Text += "\r\n" + "---[" + (i + 1) + "]---[" + players[i] + "]------>-----" + order[y] + "---<--[YOU]";
-                    }
-                    else
-                    {
-                        logsTextBox.Text += "\r\n" + "---[" + (i + 1) + "]---[" + players[i] + "]------>-----" + order[y] + "-------------";
-                    }
-                    y++;
+                    logsTextBox.AppendText("\r\n" + "---[" + (i + 1) + "]---[" + players[i] + "]------>-----" + (mapping[i] + 1) + "---<--");
+                    simulate_key(mapping[i]);
                 }
             }
+            Thread thread = new Thread(new ThreadStart(clear_markers));
+            thread.Start();
         }
-        
-    public void DeInitPlugin()
+
+    private void clear_markers()
+        {
+            Thread.Sleep(11000);
+            simulate_key(8);
+        }
+
+        public void DeInitPlugin()
         {
             // Unsubscribe from any events you listen to when exiting!
             ActGlobals.oFormActMain.OnLogLineRead -= OFormActMain_OnLogLineRead;
@@ -551,11 +522,6 @@ namespace ACT_Plugin
                     {
                         if (xReader.NodeType == XmlNodeType.Element)
                         {
-                            if (xReader.LocalName == "You")
-                            {
-                                yourIndex = xReader.ReadElementContentAsInt();
-                                panel1.Controls.OfType<RadioButton>().ToArray()[yourIndex].Checked = true;
-                            }
                             if (xReader.Name == "Player")
                             {
                                 String line = xReader.ReadElementContentAsString();
@@ -581,7 +547,7 @@ namespace ACT_Plugin
             }
             else
             {
-                updateTSS();
+                updateMapping();
             }
         }
         void SaveSettings()
@@ -596,7 +562,7 @@ namespace ACT_Plugin
             xWriter.WriteStartDocument(true);
             xWriter.WriteStartElement("Config");    // <Config>
             xWriter.WriteStartElement("You");
-            xWriter.WriteValue(yourIndex);
+            xWriter.WriteValue(0);
             xWriter.WriteEndElement();
             for (int i = 0; i < Players.Length; i++)
             {
@@ -698,26 +664,68 @@ namespace ACT_Plugin
         private void updatePlayers(object sender, EventArgs e)
         {
             players.Clear();
-            TextBox[] Players = panel1.Controls.OfType<TextBox>().ToArray();
+            TextBox[] Players = panel1.Controls.OfType<TextBox>().OrderBy(c => c.Name).ToArray();
             for (int i = 0; i < Players.Length; i++)
-            {
                 players.Add(Players[i].Text);
-            }
+            updateMapping();
         }
 
         private void updateTSS(object sender, EventArgs e)
         {
-            updateTSS();
-        }
-        private void updateTSS()
-        {
             order.Clear();
-            TextBox[] Order = panel2.Controls.OfType<TextBox>().ToArray();
+            TextBox[] Order = panel2.Controls.OfType<TextBox>().OrderBy(c => c.Name).ToArray();
             for (int i = 0; i < Order.Length; i++)
-            {
                 order.Add(Order[i].Text);
+            updateMapping();
+        }
+        private void updateMapping()
+        {
+            for (int i = 0; i < order.Count; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (order[i] == players[j])
+                    {
+                        mapping[j] = i;
+                        continue;
+                    }
+                }
             }
+
         }
 
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (check_lists())
+                logsTextBox.AppendText("\r\n" + "-[SUCCESS! Priority and party lists match]-");
+            else
+                logsTextBox.AppendText("\r\n" + "-[FAILURE! Priority and party lists do not match, check your input!]-");
+        }
+
+        private bool check_lists()
+        {
+            for (int i = 0; i < 8; i++)
+                if (players[i] != order[mapping[i]])
+                        return false;
+            return true;
+        }
+
+        private void simulate_key(int key)
+        {
+                const int delay = 5;
+                sim.Keyboard.KeyDown(VirtualKeyCode.CONTROL);
+                Thread.Sleep(delay);
+                sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
+                Thread.Sleep(delay);
+                sim.Keyboard.KeyDown(VirtualKeyCode.F1 + key);
+                Thread.Sleep(delay);
+                sim.Keyboard.KeyUp(VirtualKeyCode.F1 + key);
+                Thread.Sleep(delay);
+                sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+                Thread.Sleep(delay);
+                sim.Keyboard.KeyUp(VirtualKeyCode.CONTROL);
+                Thread.Sleep(delay*2);
+        }
     }
 }
