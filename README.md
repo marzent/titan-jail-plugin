@@ -1,29 +1,30 @@
 # Titan Jail ACT Plugin!
 
-This plugin is used to call out player's position based on a priority list 
+This plugin is used to mark players based on a priority list. You will need `WindowsInput.dll` in the same folder as this plugin.
 
-Download Jail_Plugin.dll\
-https://github.com/Tarutella/titan-jail-plugin/releases/latest 
-
-Example:
-> Player1 < Jail\
-> Player2 \
-> Player3 \
-> [ YOU ] < Jail \
-> Player5 \
-> Player6 \
-> Player7 < Jail\
-> Player8 \
-the plugin will let you know that your position is second on the priority list.
 
 ## Steps:
-1- Fill in priority list and select your character:\
-![](https://i.gyazo.com/a4b45440d9638561bdc05ecca46d2a26.png)
+1- Fill in priority list
 
-2- Set up your Triggers:\
-![](https://i.gyazo.com/b390d5b56d6730af4c34a60f9f1d96f1.png)
+2- Fill in party list
 
-you can export and share the priority list with your team if they are following a priority system, or are using the plugin.
+3- Set up ingame macros with `CTRL + SHIFT + F{1-8}` the following way:
+> /mk attack <{1-8}>
+
+4- Set up a macro with  `CTRL + SHIFT + F9` with:
+> /mk off <1> \
+> /mk off <2> \
+> /mk off <3> \
+> /mk off <4> \
+> /mk off <5> \
+> /mk off <6> \
+> /mk off <7> \
+> /mk off <8> 
+
+5- (optional) Hide the hotbar you used for this
+
+
+you can export and share the priority list with other forks of this plugin.
 ***
 
 
