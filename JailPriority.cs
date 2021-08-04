@@ -241,7 +241,6 @@ namespace ACT_Plugin
             this.party8.Name = "party8";
             this.party8.Size = new System.Drawing.Size(163, 20);
             this.party8.TabIndex = 10;
-            this.party8.Text = "Third";
             this.party8.TextChanged += new System.EventHandler(this.updateTSS);
             // 
             // party7
@@ -250,7 +249,6 @@ namespace ACT_Plugin
             this.party7.Name = "party7";
             this.party7.Size = new System.Drawing.Size(163, 20);
             this.party7.TabIndex = 9;
-            this.party7.Text = "Third";
             this.party7.TextChanged += new System.EventHandler(this.updateTSS);
             // 
             // party6
@@ -259,7 +257,6 @@ namespace ACT_Plugin
             this.party6.Name = "party6";
             this.party6.Size = new System.Drawing.Size(163, 20);
             this.party6.TabIndex = 8;
-            this.party6.Text = "Third";
             this.party6.TextChanged += new System.EventHandler(this.updateTSS);
             // 
             // party5
@@ -268,7 +265,6 @@ namespace ACT_Plugin
             this.party5.Name = "party5";
             this.party5.Size = new System.Drawing.Size(163, 20);
             this.party5.TabIndex = 7;
-            this.party5.Text = "Third";
             this.party5.TextChanged += new System.EventHandler(this.updateTSS);
             // 
             // party4
@@ -277,7 +273,6 @@ namespace ACT_Plugin
             this.party4.Name = "party4";
             this.party4.Size = new System.Drawing.Size(163, 20);
             this.party4.TabIndex = 6;
-            this.party4.Text = "Third";
             this.party4.TextChanged += new System.EventHandler(this.updateTSS);
             // 
             // party1
@@ -286,7 +281,6 @@ namespace ACT_Plugin
             this.party1.Name = "party1";
             this.party1.Size = new System.Drawing.Size(163, 20);
             this.party1.TabIndex = 3;
-            this.party1.Text = "First";
             this.party1.TextChanged += new System.EventHandler(this.updateTSS);
             // 
             // party2
@@ -295,7 +289,6 @@ namespace ACT_Plugin
             this.party2.Name = "party2";
             this.party2.Size = new System.Drawing.Size(163, 20);
             this.party2.TabIndex = 4;
-            this.party2.Text = "Second";
             this.party2.TextChanged += new System.EventHandler(this.updateTSS);
             // 
             // party3
@@ -304,7 +297,6 @@ namespace ACT_Plugin
             this.party3.Name = "party3";
             this.party3.Size = new System.Drawing.Size(163, 20);
             this.party3.TabIndex = 5;
-            this.party3.Text = "Third";
             this.party3.TextChanged += new System.EventHandler(this.updateTSS);
             // 
             // label5
