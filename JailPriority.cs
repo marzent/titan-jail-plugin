@@ -13,7 +13,7 @@ using WindowsInput;
 using WindowsInput.Native;
 
 [assembly: AssemblyTitle("JailPriority Plugin")]
-[assembly: AssemblyVersion("1.1.0.1")]
+[assembly: AssemblyVersion("1.1.0.2")]
 
 namespace ACT_Plugin
 {
