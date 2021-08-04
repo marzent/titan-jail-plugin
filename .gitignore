@@ -1,0 +1,5 @@
+/obj/*
+/bin/*
+/.vs/*
+!/bin/Release/Jail_Plugin.dll
+!/bin/Release/WindowsInput.dll

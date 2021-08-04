@@ -177,24 +177,26 @@ namespace ACT_Plugin
             // 
             // exportButton
             // 
-            this.exportButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.exportButton.BackColor = System.Drawing.Color.Black;
+            this.exportButton.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.exportButton.Location = new System.Drawing.Point(130, 244);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(75, 23);
             this.exportButton.TabIndex = 9;
             this.exportButton.Text = "Export";
-            this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.UseVisualStyleBackColor = false;
             this.exportButton.Click += new System.EventHandler(this.exportPriorityList);
             // 
             // importButton
             // 
-            this.importButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.importButton.BackColor = System.Drawing.Color.Black;
+            this.importButton.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.importButton.Location = new System.Drawing.Point(3, 244);
             this.importButton.Name = "importButton";
             this.importButton.Size = new System.Drawing.Size(75, 23);
             this.importButton.TabIndex = 10;
             this.importButton.Text = "Import";
-            this.importButton.UseVisualStyleBackColor = true;
+            this.importButton.UseVisualStyleBackColor = false;
             this.importButton.Click += new System.EventHandler(this.importPriorityList);
             // 
             // instructionLabel
@@ -204,7 +206,7 @@ namespace ACT_Plugin
             this.instructionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instructionLabel.Location = new System.Drawing.Point(460, 16);
             this.instructionLabel.Name = "instructionLabel";
-            this.instructionLabel.Size = new System.Drawing.Size(201, 96);
+            this.instructionLabel.Size = new System.Drawing.Size(200, 96);
             this.instructionLabel.TabIndex = 11;
             this.instructionLabel.Text = "1. Write priority list.\r\n2. Write your Party List in order.\r\n3. Set up CTRL+ SHIF" +
     "T + F{1-8}\r\n    macros in order.\r\n\r\nyou can export/import priority list.";
@@ -339,13 +341,14 @@ namespace ACT_Plugin
             // 
             // button1
             // 
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.BackColor = System.Drawing.Color.Black;
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.button1.Location = new System.Drawing.Point(501, 133);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(89, 41);
             this.button1.TabIndex = 16;
             this.button1.Text = "Check lists";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
