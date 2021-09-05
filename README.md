@@ -1,6 +1,6 @@
 # Titan Jail ACT Plugin!
 
-This plugin is used to mark players based on a priority list. You will need `WindowsInput.dll` in the same folder as this plugin.
+This plugin is used to mark players based on a priority list.
 
 
 ## Steps:
