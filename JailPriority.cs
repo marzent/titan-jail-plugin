@@ -9,18 +9,15 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using System.Linq;
 using System.Threading;
-using WindowsInput;
-using WindowsInput.Native;
+using Jail_Plugin;
 
 [assembly: AssemblyTitle("JailPriority Plugin")]
-[assembly: AssemblyVersion("1.1.0.2")]
+[assembly: AssemblyVersion("1.2.0.0")]
 
 namespace ACT_Plugin
 {
     public class JailPriority : UserControl, IActPluginV1
     {
-
-        InputSimulator sim = new InputSimulator();
         private Label Label1;
         private PictureBox pictureBox1;
 
@@ -206,7 +203,7 @@ namespace ACT_Plugin
             this.instructionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instructionLabel.Location = new System.Drawing.Point(460, 16);
             this.instructionLabel.Name = "instructionLabel";
-            this.instructionLabel.Size = new System.Drawing.Size(200, 96);
+            this.instructionLabel.Size = new System.Drawing.Size(201, 96);
             this.instructionLabel.TabIndex = 11;
             this.instructionLabel.Text = "1. Write priority list.\r\n2. Write your Party List in order.\r\n3. Set up CTRL+ SHIF" +
     "T + F{1-8}\r\n    macros in order.\r\n\r\nyou can export/import priority list.";
@@ -708,19 +705,7 @@ namespace ACT_Plugin
 
         private void simulate_key(int key)
         {
-                const int delay = 5;
-                sim.Keyboard.KeyDown(VirtualKeyCode.CONTROL);
-                Thread.Sleep(delay);
-                sim.Keyboard.KeyDown(VirtualKeyCode.SHIFT);
-                Thread.Sleep(delay);
-                sim.Keyboard.KeyDown(VirtualKeyCode.F1 + key);
-                Thread.Sleep(delay);
-                sim.Keyboard.KeyUp(VirtualKeyCode.F1 + key);
-                Thread.Sleep(delay);
-                sim.Keyboard.KeyUp(VirtualKeyCode.SHIFT);
-                Thread.Sleep(delay);
-                sim.Keyboard.KeyUp(VirtualKeyCode.CONTROL);
-                Thread.Sleep(delay*2);
+            key_presser.combo(key);
         }
     }
 }
