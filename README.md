@@ -2,6 +2,7 @@
 
 This plugin is used to mark players based on a priority list.
 
+![alt text](https://github.com/marzent/titan-jail-plugin/blob/master/jail_plugin_pic.png?raw=true)
 
 ## Steps:
 1- Fill in priority list
