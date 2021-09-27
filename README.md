@@ -5,9 +5,9 @@ This plugin is used to mark players based on a priority list.
 ![alt text](https://github.com/marzent/titan-jail-plugin/blob/master/jail_plugin_pic.png?raw=true)
 
 ## Steps:
-1- Fill in priority list
+1- Press the Auto Fill™ button to populate party list and auto-sort players based on a Job priority.
 
-2- Fill in party list
+2- (optional) Make adjustments to party and priority list if needed
 
 3- Set up ingame macros with `CTRL + SHIFT + F{1-8}` the following way:
 > /mk attack <{1-8}>
@@ -25,7 +25,6 @@ This plugin is used to mark players based on a priority list.
 5- (optional) Hide the hotbar you used for this
 
 
-you can export and share the priority list with other forks of this plugin.
 ***
 
 
